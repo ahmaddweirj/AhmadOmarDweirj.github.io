@@ -1,8 +1,58 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portfolio Admin</title>
 <style>
-:root{--bg:#02070d;--card:#081522;--line:#17364b;--text:#eefaff;--muted:#8da5b7;--cyan:#32d8ff;--blue:#6b8cff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 10%,#0b2938,transparent 30%),var(--bg);color:var(--text);font:14px Arial}.wrap{width:min(1000px,calc(100% - 30px));margin:auto}header{padding:22px 0;border-bottom:1px solid var(--line)}main{padding:45px 0}.card{background:#071522;border:1px solid var(--line);border-radius:17px;padding:22px;margin-bottom:14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}label{display:block;font-size:10px;color:#8da5b7;margin:10px 0 5px}input,textarea{width:100%;background:#020b13;border:1px solid var(--line);border-radius:9px;padding:11px;color:#fff;outline:none}textarea{min-height:100px;resize:vertical}.btn{border:1px solid var(--line);background:#071522;color:#fff;border-radius:9px;padding:10px 13px;cursor:pointer;font-weight:bold;font-size:11px}.primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#021019;border:0}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.item{padding:15px;border:1px solid var(--line);border-radius:12px;margin:8px 0;background:#06111a}.item strong{display:block}.hint{font-size:11px;color:var(--muted);line-height:1.7}.danger{border-color:#633344;color:#ffb5c7}@media(max-width:700px){.grid{grid-template-columns:1fr}}
-</style></head><body><header><div class="wrap"><strong>AHMAD.SEC — PROJECT MANAGER</strong> · <a href="index.html">← Back to portfolio</a></div></header>
+:root{--bg:#02070d;--card:#081522;--line:#1c3f58;--text:#f3fbff;--muted:#9fb6c7;--cyan:#39e0ff;--blue:#7a97ff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 80% 10%,#0d3247,transparent 32%),radial-gradient(circle at 10% 90%,#0a2536,transparent 35%),var(--bg);color:var(--text);font:16px/1.5 -apple-system,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{width:min(1000px,calc(100% - 30px));margin:auto}
+header{padding:26px 0;border-bottom:1px solid var(--line)}
+header strong{font-size:17px;letter-spacing:.03em}
+header a{color:var(--cyan);text-decoration:none}
+header a:hover{text-decoration:underline}
+main{padding:50px 0}
+.card{background:linear-gradient(180deg,#0a1c2c,#071522);border:1px solid var(--line);border-radius:20px;padding:26px;margin-bottom:18px;box-shadow:0 10px 30px -18px rgba(0,0,0,.6)}
+.card h1{font-size:24px;margin:0 0 10px}
+.card h2{font-size:19px;margin:0 0 6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:12px 0 6px}
+input,textarea{width:100%;background:#03111c;border:1px solid var(--line);border-radius:11px;padding:13px 14px;color:#fff;outline:none;font-size:15px;transition:border-color .15s}
+input:focus,textarea:focus{border-color:var(--cyan)}
+textarea{min-height:110px;resize:vertical}
+.btn{border:1px solid var(--line);background:#0a1c2c;color:#fff;border-radius:11px;padding:12px 18px;cursor:pointer;font-weight:700;font-size:13px;transition:transform .1s,border-color .15s}
+.btn:hover{border-color:var(--cyan)}
+.btn:active{transform:scale(.97)}
+.primary{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#021019;border:0}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.item{padding:17px;border:1px solid var(--line);border-radius:14px;margin:10px 0;background:#081a28}
+.item strong{display:block;font-size:16px}
+.hint{font-size:13px;color:var(--muted);line-height:1.75}
+.danger{border-color:#733245;color:#ffb5c7}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+
+/* Login gate */
+#loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-card{width:min(380px,100%);background:linear-gradient(180deg,#0a1c2c,#071522);border:1px solid var(--line);border-radius:20px;padding:32px;box-shadow:0 20px 50px -20px rgba(0,0,0,.7)}
+.login-card h1{font-size:20px;margin:0 0 4px}
+.login-card p.hint{margin:0 0 20px}
+.login-error{color:#ffb5c7;font-size:13px;margin-top:10px;min-height:16px}
+#adminApp{display:none}
+</style></head><body>
+
+<div id="loginScreen">
+  <div class="login-card">
+    <h1>🔒 Admin Login</h1>
+    <p class="hint">Sign in to manage portfolio projects.</p>
+    <label>Username</label>
+    <input id="loginUser" autocomplete="username" placeholder="Username">
+    <label>Password</label>
+    <input id="loginPass" type="password" autocomplete="current-password" placeholder="Password">
+    <div class="row"><button class="btn primary" onclick="tryLogin()" style="flex:1">Sign In</button></div>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<div id="adminApp">
+<header><div class="wrap"><strong>AHMAD.SEC — PROJECT MANAGER</strong> · <a href="index.html">← Back to portfolio</a> · <a href="#" onclick="logout();return false;">Log out</a></div></header>
 <main class="wrap">
 <div class="card"><h1>Add / Manage Projects</h1><p class="hint">This panel lets you build your projects list without editing the website layout. Add a project, then download the updated <b>projects.json</b> and replace <code>data/projects.json</code> in your GitHub repository. The public site then updates automatically.</p></div>
 <div class="card"><h2>New Project</h2><div class="grid">
@@ -13,7 +63,31 @@
 </div><label>Description</label><textarea id="description" placeholder="Short professional description..."></textarea><label>Tags — separate with commas</label><input id="tags" placeholder="SOC, SIEM, Splunk, Network Security"><div class="row"><button class="btn primary" onclick="addProject()">＋ Add Project</button><button class="btn" onclick="clearForm()">Clear</button></div></div>
 <div class="card"><h2>Current Projects</h2><div id="list"></div><div class="row"><button class="btn primary" onclick="downloadJSON()">↓ Download updated projects.json</button><button class="btn" onclick="importJSON()">↑ Import projects.json</button><button class="btn danger" onclick="resetProjects()">Reset to original projects</button></div><p class="hint">For every new project: upload its files to your repository → add the project here → download <b>projects.json</b> → upload that one JSON file to <b>data/projects.json</b> → commit/push. No website redesign is needed.</p></div>
 </main>
+</div>
+
 <script>
+/* ---- Login gate ---- (client-side only — see note in chat) */
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "changeme123";
+
+function showApp(){document.getElementById('loginScreen').style.display='none';document.getElementById('adminApp').style.display='block'}
+function tryLogin(){
+  const u=document.getElementById('loginUser').value.trim();
+  const p=document.getElementById('loginPass').value;
+  if(u===ADMIN_USER && p===ADMIN_PASS){
+    sessionStorage.setItem('adminAuthed','1');
+    document.getElementById('loginError').textContent='';
+    showApp();
+  } else {
+    document.getElementById('loginError').textContent='Incorrect username or password.';
+  }
+}
+function logout(){sessionStorage.removeItem('adminAuthed');location.reload()}
+document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin()});
+document.getElementById('loginUser').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin()});
+if(sessionStorage.getItem('adminAuthed')==='1'){showApp()}
+
+/* ---- Original project-manager logic (unchanged) ---- */
 const original=[{"id":"graduation-firewall","title":"Proxy-Based Firewall Design & Implementation","category":"Network Security","year":"2025","featured":true,"description":"A practical network-security project implementing a proxy-based firewall to filter network traffic, monitor packets, apply configurable filtering rules and generate security alerts.","image":"projects/graduation-flowchart.jpg","github":"https://github.com/AhmadOmarDwerij","canva":"","pdf":"projects/telegram-alert-setup.pdf","download":"projects/graduation-project.zip","tags":["Firewall","Network Security","Traffic Analysis","Packet Monitoring","Python","Telegram Alerts"]}];
 let data=JSON.parse(localStorage.getItem('portfolioProjects')||'null')||original;
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
