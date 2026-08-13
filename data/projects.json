@@ -27,7 +27,7 @@
     "year": "2025",
     "featured": false,
     "description": "RSA (Rivest–Shamir–Adleman) is one of the most widely used public-key cryptographic systems. It enables secure communication over insecure channels such as the internet.",
-    "image": "projects/RSA.png",
+    "image": "projects/RSA.jpg",
     "github": "https://github.com/AhmadOmarDweirj/RSA-cryptosystem",
     "download": "projects/RSA-cryptosystem-main",
     "tags": [
