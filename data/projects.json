@@ -21,15 +21,15 @@
     ]
   },
   {
-    "id": "1786620038309",
-    "title": "RSA-Cracker-CTF",
+    "id": "1786621584182",
+    "title": "RSA Encryption",
     "category": "Cyber Security",
     "year": "2025",
     "featured": false,
     "description": "RSA (Rivest–Shamir–Adleman) is one of the most widely used public-key cryptographic systems. It enables secure communication over insecure channels such as the internet.",
-    "image": "projects/RSA.jpg",
+    "image": "projects/RSA.PNG",
     "github": "https://github.com/AhmadOmarDweirj/RSA-cryptosystem",
-    "download": "projects/RSA-cryptosystem-main.zip",
+    "download": "projects/RSA-cryptosystem-main",
     "tags": [
       "Encryption",
       "RSA"
